@@ -1,0 +1,123 @@
+﻿@model IEnumerable<getajob.Models.Listing>
+
+@{
+    ViewBag.Title = "Index2";
+}
+
+@Html.Partial("Dashboard")
+
+<h2>
+    Listings @Html.ActionLink("Create New Listing", "Create", "Listings", null, new {@class = "btn btn-primary float-end"})
+</h2>
+
+<hr/>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            Creator
+        </th>
+        <th>
+            Position
+        </th>
+        <th>
+            Company
+        </th>
+        <th>
+            Details
+        </th>
+        <th>
+            Contact
+        </th>
+        <th>
+
+        </th>
+
+
+    </tr>
+    @if (User.Identity.Name == "admin")
+    {
+        foreach (var item in Model)
+
+
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ListingCreator)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ListingName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ListingCompany)
+                </td>
+                <td>
+                    @if (item.listingText.Length > 47)
+                    {
+                        @(item.listingText.Substring(0, 47) + "...")
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.listingText)
+                    }
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.listingContact)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Listings", new {id = item.ID}, new {@class = "btn btn-outline-warning fw-bold"})
+                    @Html.ActionLink("Details", "Details", "Listings", new {id = item.ID}, new {@class = "btn btn-outline-warning fw-bold"})
+                    @Html.ActionLink("Delete", "Delete", "Listings", new {id = item.ID}, new {@class = "btn btn-outline-danger fw-bold"})
+                </td>
+
+            </tr>
+        }
+    }
+    else
+    {
+        foreach (var item in Model)
+
+
+        {
+            if (item.ListingCreator == User.Identity.Name)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ListingCreator)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ListingName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ListingCompany)
+                    </td>
+                    <td>
+                        @if (item.listingText.Length > 50)
+                        {
+                            @(item.listingText.Substring(0, 47) + "...")
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.listingText)
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.listingContact)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Listings", new {id = item.ID}, new {@class = "btn btn-warning"})
+                        @Html.ActionLink("Details", "Details", "Listings", new {id = item.ID}, new {@class = "btn btn-warning"})
+                        @Html.ActionLink("Delete", "Delete", "Listings", new {id = item.ID}, new {@class = "btn btn-danger"})
+                    </td>
+                </tr>
+            }
+        }
+    }
+
+</table>

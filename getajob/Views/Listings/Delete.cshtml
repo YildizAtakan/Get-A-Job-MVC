@@ -1,0 +1,52 @@
+﻿@model getajob.Models.Listing
+
+@{
+    ViewBag.Title = "Delete";
+}
+<hr/>
+<h2>Delete</h2>
+<hr/>
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <dl class="dl-horizontal">
+
+        <label>Listing Name</label>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListingName)
+        </dd>
+
+        <label>Company</label>
+
+
+        <dd>
+            @Html.DisplayFor(model => model.ListingCompany)
+        </dd>
+
+
+        <label>Listing Details Text</label>
+
+
+        <dd>
+            @Html.DisplayFor(model => model.listingText)
+        </dd>
+
+        <label>Contact</label>
+
+
+        <dd>
+            @Html.DisplayFor(model => model.listingContact)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-outline-primary"/> |
+            @Html.ActionLink("Back to List", "Index2", "Listings", null, new {@class = "btn btn-outline-secondary"})
+        </div>
+    }
+</div>

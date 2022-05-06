@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/css")
+
+    <title>Get A Job - @ViewBag.Title</title>
+
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img class="bi me-2" src="~/Content/Images/logo2.png" height="40" width="107" role="img" aria-label="Bootstrap">
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li> @Html.ActionLink("Home", "Index", "Home", null, new {@class = "nav-link px-2 text-white"}) </li>
+                <li> @Html.ActionLink("Job Postings", "Index", "Listings", null, new {@class = "nav-link px-2 text-white"})</li>
+                <li> @Html.ActionLink("FAQ", "FAQ", "Home", null, new {@class = "nav-link px-2 text-white"})</li>
+                <li> @Html.ActionLink("About Us", "About", "Home", null, new {@class = "nav-link px-2 text-white"})</li>
+
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+            </form>
+
+            <div class="text-end">
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <label class="label label-info">
+                        Hi @User.Identity.Name !
+                    </label>
+                    @Html.ActionLink("Dashboard", "Index2", "Listings", null, new {@class = "btn btn-primary"})
+
+                    <!-- <a href="/Account/Dashboard" class="btn btn-primary">Dashboard</a>   -->
+                    @Html.ActionLink("Logout", "Logout", "Account", null, new {@class = "btn btn-danger"})
+                }
+                else
+                {
+                    <!--  <a href="/Account/Login" class="btn success">Login</a>
+                    <a href="/Account/Register" class="btn btn-primary">Register</a>-->
+                    @Html.ActionLink("Login", "Login", "Account", null, new {@class = "btn btn-outline-light me-2"})
+                    @Html.ActionLink("Sign Up", "Register", "Account", null, new {@class = "btn btn-warning"})
+                }
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container body-content">
+    @RenderBody()
+    @RenderSection("scripts", false)
+    @Scripts.Render("~/bundles/bootstrap")
+
+</div>
+
+<footer class="footer mt-auto py-3">
+    <div class="container">
+        <span class="text-muted">
+            <hr/>
+
+            <p class="float-end mb-1">
+                <a href="#" class="btn btn-outline-secondary"> Back to top</a>
+            </p>
+
+
+            <p class="mb-1">&copy;2021 Get A Job, All Rights Reserved</p>
+            <p class="mb-0">Ivory Avenue No:8 LA 90125</p>
+        </span>
+    </div>
+</footer>
+
+</body>
+</html>

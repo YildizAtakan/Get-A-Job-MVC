@@ -1,0 +1,91 @@
+﻿@model getajob.Models.RoleEditModel
+@{
+    ViewBag.Title = "Edit";
+}
+<hr/>
+<h2>Update</h2>
+<hr/>
+
+@using (Html.BeginForm())
+{
+    <input type="hidden" value="@Model.Role.Name" name="roleName"/>
+    <input type="hidden" value="@Model.Role.Id" name="roleId"/>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+
+            <h4>Add to @Model.Role.Name</h4>
+
+        </div>
+        <table class="table table-striped">
+            @if (Model.NonMembers.Count() == 0)
+            {
+                <tr>
+                    <td colspan="2"> No User To Add </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        User Id
+                    </td>
+                    <td>
+                        Role
+                    </td>
+                </tr>
+
+                foreach (var user in Model.NonMembers)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>
+                            <input type="checkbox" name="IdsToAdd" value="@user.Id"/>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+
+    <hr/>
+
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4>Remove from @Model.Role.Name</h4>
+        </div>
+        <table class="table table-striped">
+            @if (Model.Members.Count() == 0)
+            {
+                <tr>
+                    <td colspan="2"> No User To Remove </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        User Id
+                    </td>
+                    <td>
+                        Role
+                    </td>
+                </tr>
+
+                foreach (var user in Model.Members)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>
+                            <input type="checkbox" name="IdsToDelete" value="@user.Id"/>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <hr/>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <hr/>
+    @Html.ActionLink("Back to Roles", "Index", "RoleAdmin", null, new {@class = "btn btn-outline-secondary"})
+}

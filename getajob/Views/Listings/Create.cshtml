@@ -1,0 +1,69 @@
+﻿@model getajob.Models.Listing
+
+@{
+    ViewBag.Title = "Create";
+}
+<hr/>
+<h2>Create</h2>
+<hr/>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <div class="form-group">
+            <label>Name</label>
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ListingName, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.ListingName, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <input type="hidden" id="ListingCreator " name="ListingCreator" value=@User.Identity.Name/>
+
+
+        <div class="form-group">
+            <label>Company</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ListingCompany, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.ListingCompany, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label>Listing Details</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.listingText, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.listingText, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Contact Info</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.listingContact, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.listingContact, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <hr/>
+        <p>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-outline-primary"/>
+                </div>
+            </div>
+        </p>
+        <hr/>
+        <p>
+
+
+            @Html.ActionLink("Back to List", "Index2", "Listings", null, new {@class = "btn btn-outline-secondary"})
+
+        </p>
+    </div>
+}

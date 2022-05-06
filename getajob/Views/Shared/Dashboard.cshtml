@@ -1,0 +1,21 @@
+﻿<h1 style="margin-bottom: 20px; margin-top: 23px;">
+    Dashboard
+    @if (User.Identity.Name == "admin")
+    {
+        
+    <tr>
+        <th>
+            @Html.ActionLink("Listings", "Index2", "Listings", null, new {@class = "btn btn-light btn-lg fw-bold"})
+
+        </th>
+        <th>
+            @Html.ActionLink("Accounts", "Index", "Admin", null, new {@class = "btn btn-light btn-lg fw-bold"})
+        </th>
+        <th>
+            @Html.ActionLink("User Roles", "Index", "RoleAdmin", null, new {@class = "btn btn-light btn-lg fw-bold"})
+        </th>
+    </tr>
+    }
+</h1>
+
+<hr/>

@@ -1,0 +1,57 @@
+﻿@model getajob.Models.Listing
+
+@{
+    ViewBag.Title = "Details";
+}
+<hr/>
+
+<h2>Details</h2>
+<hr/>
+
+<div>
+    <h4>Listing</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Name</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListingName)
+        </dd>
+
+        <dt>
+            <label>Company</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListingCompany)
+        </dd>
+
+
+        <dt>
+            <label>Listing Details</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.listingText)
+        </dd>
+
+        <dt>
+            <label>Contact Info</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.listingContact)
+        </dd>
+
+    </dl>
+</div>
+<hr/>
+
+<p>
+
+    @Html.ActionLink("Edit", "Edit", "Listings", new {id = Model.ID}, new {@class = "btn btn-outline-primary"})
+</p>
+<p>
+    @Html.ActionLink("Back to List", "Index2", "Listings", null, new {@class = "btn btn-outline-secondary"})
+</p>

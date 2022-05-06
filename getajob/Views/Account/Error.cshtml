@@ -1,0 +1,15 @@
+﻿@model string[]
+@{
+    ViewBag.Title = "Error";
+}
+<hr/>
+<h2>Error!</h2>
+<hr/>
+<div class="alert alert-danger" role="alert">
+    @foreach (var err in Model)
+    {
+        <p>@err</p>
+    }
+</div>
+
+@Html.ActionLink("Go to home page", "Index", "Home", null, new {@class = "btn btn-outline-secondary"})
